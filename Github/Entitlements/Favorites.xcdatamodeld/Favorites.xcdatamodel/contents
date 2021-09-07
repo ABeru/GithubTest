@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Repos" representedClassName="Repos" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="reposDescription" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="owner" maxCount="1" deletionRule="Cascade" destinationEntity="ReposOwner" inverseName="repos" inverseEntity="ReposOwner"/>
+    </entity>
+    <entity name="ReposOwner" representedClassName="ReposOwner" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar" optional="YES" attributeType="String"/>
+        <attribute name="login" optional="YES" attributeType="String"/>
+        <relationship name="repos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Repos" inverseName="owner" inverseEntity="Repos"/>
+    </entity>
+    <elements>
+        <element name="Repos" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="ReposOwner" positionX="341.1473999023438" positionY="188.1713256835937" width="128" height="88"/>
+    </elements>
+</model>
