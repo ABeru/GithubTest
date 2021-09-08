@@ -38,8 +38,8 @@ extension ViewController: UITableViewDelegate{
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         vm.fetchRepositories(user: searchText, {
-        DispatchQueue.main.async {
-            self.RepList.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.RepList.reloadData()
         }
         })
 

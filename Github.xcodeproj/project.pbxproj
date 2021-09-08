@@ -220,9 +220,9 @@
 		49C71A5E26E654F800778F5F /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				49C71A5426E6532E00778F5F /* SearchStoryboard.storyboard */,
 				498CDB3E26DFA56200D66922 /* ViewController.swift */,
 				49140A9426E0C3370002CE44 /* MainViewModel.swift */,
+				49C71A5426E6532E00778F5F /* SearchStoryboard.storyboard */,
 			);
 			path = Search;
 			sourceTree = "<group>";

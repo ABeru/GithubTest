@@ -18,8 +18,8 @@ class StarredController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         vm.fetchFavorites {
-            DispatchQueue.main.async {
-                self.RepList.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.RepList.reloadData()
             }
         }
     }
