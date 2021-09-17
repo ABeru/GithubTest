@@ -15,7 +15,7 @@ class ReposDataSource: NSObject, UITableViewDataSource {
         self.viewModel = viewModel
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.repositories.count
+        return viewModel.repositories.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

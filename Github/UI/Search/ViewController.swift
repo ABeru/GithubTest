@@ -7,14 +7,23 @@
 
 import UIKit
 import SDWebImage
+import RxCocoa
+import RxSwift
 class ViewController: BaseViewController {
     @IBOutlet weak var RepList: UITableView!
     @IBOutlet weak var Search: UISearchBar!
     var vm = MainViewModel()
+    var db = DisposeBag()
     var datasource: ReposDataSource?
     override func viewDidLoad() {
         super.viewDidLoad()
         Assign()
+        vm.reload
+            .subscribe(onNext: { _ in
+                DispatchQueue.main.async { [weak self] in
+                          self?.RepList.reloadData()
+                      }
+            }).disposed(by: db)
     }
     private func Assign() {
         Search.delegate = self
@@ -22,12 +31,12 @@ class ViewController: BaseViewController {
         datasource = ReposDataSource(vm)
         RepList.dataSource = datasource
     }
+    
     override  func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let DetailsVc = segue.destination as? DetailsController{
             DetailsVc.vm = DetailsViewModel(repository: vm.repository)
         }
     }
-
 }
 extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -37,12 +46,8 @@ extension ViewController: UITableViewDelegate{
 }
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        vm.fetchRepositories(user: searchText, {
-        DispatchQueue.main.async { [weak self] in
-            self?.RepList.reloadData()
-        }
-        })
-
+        vm.text.accept(searchText)
+       
     }
 }
 

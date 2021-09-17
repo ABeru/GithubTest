@@ -6,22 +6,27 @@
 //
 
 import UIKit
-
+import RxSwift
+import RxCocoa
 class StarredController: UIViewController {
     @IBOutlet weak var RepList: UITableView!
-    var vm = StarredViewModel()
+        var vm = StarredViewModel()
     var datasource: ReposDataSource?
+    var db = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
       assign()
+        vm.reload
+            .subscribe(onNext: { _ in
+                DispatchQueue.main.async { [weak self] in
+                          self?.RepList.reloadData()
+                }
+            }).disposed(by: db)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vm.fetchFavorites {
-            DispatchQueue.main.async { [weak self] in
-                self?.RepList.reloadData()
-            }
-        }
+        vm.viewWillAppear()
+        
     }
     func assign() {
         RepList.delegate = self

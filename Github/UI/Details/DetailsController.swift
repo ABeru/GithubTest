@@ -6,23 +6,23 @@
 //
 
 import UIKit
-
+import RxCocoa
+import RxSwift
 class DetailsController: BaseViewController {
     @IBOutlet weak var dateCreated: UILabel!
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var star: UIButton!
     @IBOutlet weak var reposDesc: UILabel!
     var vm: DetailsViewModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindUi()
     }
     func bindUi() {
-        vm?.checkFavorites { [weak self] in
-            self?.star.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            self?.star.tintColor = .systemBlue
-        }
+        if vm?.check.value == true {
+                star.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                star.tintColor = .systemBlue
+                }
         dateCreated.text = vm?.date
         language.text = vm?.language
         reposDesc.text = vm?.description
@@ -31,7 +31,7 @@ class DetailsController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func addFavorites(_ sender: UIButton) {
-        if vm?.check == true {
+        if vm?.check.value == true {
             star.setImage(UIImage(systemName: "star"), for: .normal)
             star.tintColor = .systemBlue
             vm?.removeRepository()

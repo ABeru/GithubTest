@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 protocol ViewModel: AnyObject {
-    var repositories: [ReposModel] {get}
+    var repositories: BehaviorRelay<[ReposModel]> {get}
     var selectedIndex: Int {get set}
     var avatar: String {get}
     var userName: String {get}
@@ -20,16 +22,16 @@ extension ViewModel {
         selectedIndex = index
     }
     var avatar: String {
-        return repositories[selectedIndex].owner?.avatar_url ?? ""
+        return repositories.value[selectedIndex].owner?.avatar_url ?? ""
     }
     var userName: String {
-        return repositories[selectedIndex].owner?.login ?? ""
+        return repositories.value[selectedIndex].owner?.login ?? ""
     }
     var repositoryName: String {
-        return repositories[selectedIndex].name ?? ""
+        return repositories.value[selectedIndex].name ?? ""
     }
     var repository: ReposModel {
-        return repositories[selectedIndex]
+        return repositories.value[selectedIndex]
     }
     
 }

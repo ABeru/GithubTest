@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 import CoreData
+import RxSwift
+import RxCocoa
 class DetailsViewModel {
     var repository: ReposModel
-    var check = false
+    var check = BehaviorRelay(value: false)
+    var db = DisposeBag()
     var date: String {
         var n = repository.created_at?.replacingOccurrences(of: "T", with: "\n") ?? ""
         n.removeLast()
@@ -24,13 +27,30 @@ class DetailsViewModel {
     }
     init(repository: ReposModel) {
         self.repository = repository
+        configure()
+    }
+    func configure() {
+                self.checkFavorites()
     }
     func linkPressed() {
         guard let url = URL(string: repository.html_url ?? "") else {return}
         UIApplication.shared.open(url)
     }
+//    func saveOrRemove() {
+//        checkAdd
+//            .subscribe(onNext: { [weak self] bl in
+//                if bl == true {
+//                    self?.saveRepository()
+//                }
+//                else {
+//                    self?.removeRepository()
+//                }
+//                
+//            }).disposed(by: db)
+//    }
     func saveRepository() {
         CoreDataManager.addFavorite(repository)
+        check.accept(true)
     }
     func removeRepository() {
         guard let repos1 = CoreDataManager.fetchRepositories().first(where: { $0.url == repository.html_url}) else {return}
@@ -44,13 +64,14 @@ class DetailsViewModel {
             }
 
         })
+        check.accept(false)
     }
-    func checkFavorites(_ completion: @escaping () -> Void) {
-        for n in CoreDataManager.fetchRepositories() {
-            if n.url == repository.html_url {
-                check = true
-                completion()
+    func checkFavorites() {
+            for n in CoreDataManager.fetchRepositories() {
+                if n.url == repository.html_url {
+                check.accept(true)
+                }
             }
-        }
+
     }
 }

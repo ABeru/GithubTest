@@ -10,4 +10,6 @@ target 'Github' do
     pod 'Alamofire'
  pod 'IQKeyboardManagerSwift'
   pod 'ReachabilitySwift'
+pod 'RxSwift'
+pod 'RxCocoa'
 end
