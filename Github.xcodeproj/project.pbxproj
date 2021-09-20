@@ -17,10 +17,11 @@
 		49140A9126E0B0A10002CE44 /* ReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49140A9026E0B0A10002CE44 /* ReposModel.swift */; };
 		49140A9326E0B8440002CE44 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49140A9226E0B8440002CE44 /* URLBuilder.swift */; };
 		49140A9526E0C3370002CE44 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49140A9426E0C3370002CE44 /* MainViewModel.swift */; };
+		49507C4E26F860A8002D6EF7 /* EntityDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49507C4D26F860A8002D6EF7 /* EntityDesc.swift */; };
 		497FF10C26E5FB5400F535A7 /* Favorites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497FF10A26E5FB5400F535A7 /* Favorites.xcdatamodeld */; };
 		498CDB3B26DFA56200D66922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CDB3A26DFA56200D66922 /* AppDelegate.swift */; };
 		498CDB3D26DFA56200D66922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CDB3C26DFA56200D66922 /* SceneDelegate.swift */; };
-		498CDB3F26DFA56200D66922 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CDB3E26DFA56200D66922 /* ViewController.swift */; };
+		498CDB3F26DFA56200D66922 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CDB3E26DFA56200D66922 /* MainViewController.swift */; };
 		498CDB4226DFA56200D66922 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 498CDB4026DFA56200D66922 /* Main.storyboard */; };
 		498CDB4426DFA56300D66922 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498CDB4326DFA56300D66922 /* Assets.xcassets */; };
 		498CDB4726DFA56300D66922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 498CDB4526DFA56300D66922 /* LaunchScreen.storyboard */; };
@@ -47,11 +48,12 @@
 		49140A9026E0B0A10002CE44 /* ReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposModel.swift; sourceTree = "<group>"; };
 		49140A9226E0B8440002CE44 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		49140A9426E0C3370002CE44 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		49507C4D26F860A8002D6EF7 /* EntityDesc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityDesc.swift; sourceTree = "<group>"; };
 		497FF10B26E5FB5400F535A7 /* Favorites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorites.xcdatamodel; sourceTree = "<group>"; };
 		498CDB3726DFA56200D66922 /* Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Github.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		498CDB3A26DFA56200D66922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		498CDB3C26DFA56200D66922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		498CDB3E26DFA56200D66922 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		498CDB3E26DFA56200D66922 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		498CDB4126DFA56200D66922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		498CDB4326DFA56300D66922 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		498CDB4626DFA56300D66922 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				49F43BA126E2735E00F6D818 /* CoreDataManager.swift */,
+				49507C4D26F860A8002D6EF7 /* EntityDesc.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -220,7 +223,7 @@
 		49C71A5E26E654F800778F5F /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				498CDB3E26DFA56200D66922 /* ViewController.swift */,
+				498CDB3E26DFA56200D66922 /* MainViewController.swift */,
 				49140A9426E0C3370002CE44 /* MainViewModel.swift */,
 				49C71A5426E6532E00778F5F /* SearchStoryboard.storyboard */,
 			);
@@ -392,12 +395,13 @@
 				49140A8726E0ADE70002CE44 /* ApiClient.swift in Sources */,
 				49140A8326E0A6EC0002CE44 /* DetailsController.swift in Sources */,
 				49F43BA226E2735E00F6D818 /* CoreDataManager.swift in Sources */,
-				498CDB3F26DFA56200D66922 /* ViewController.swift in Sources */,
+				498CDB3F26DFA56200D66922 /* MainViewController.swift in Sources */,
 				497FF10C26E5FB5400F535A7 /* Favorites.xcdatamodeld in Sources */,
 				49CB1FE126E6088200B26C43 /* StarredViewModel.swift in Sources */,
 				49140A8B26E0AF610002CE44 /* APIConstants.swift in Sources */,
 				49140A9526E0C3370002CE44 /* MainViewModel.swift in Sources */,
 				49F43B9B26E2240000F6D818 /* ViewModel.swift in Sources */,
+				49507C4E26F860A8002D6EF7 /* EntityDesc.swift in Sources */,
 				49140A9326E0B8440002CE44 /* URLBuilder.swift in Sources */,
 				49140A8D26E0AF940002CE44 /* BaseViewController.swift in Sources */,
 				498CDB3B26DFA56200D66922 /* AppDelegate.swift in Sources */,

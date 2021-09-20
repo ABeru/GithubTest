@@ -13,39 +13,31 @@ class DetailsController: BaseViewController {
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var star: UIButton!
     @IBOutlet weak var reposDesc: UILabel!
-    var vm: DetailsViewModel?
+    var n = ""
+    var vm: DetailsViewModel!
+    var db = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         bindUi()
     }
     func bindUi() {
-        if vm?.check.value == true {
-                star.setImage(UIImage(systemName: "star.fill"), for: .normal)
-                star.tintColor = .systemBlue
-                }
-        dateCreated.text = vm?.date
-        language.text = vm?.language
-        reposDesc.text = vm?.description
+        vm?.img
+            .subscribe(onNext: { [unowned self] name in
+                star.setImage(UIImage(systemName: name), for: .normal)
+            }).disposed(by: db)
+        star.tintColor = UIColor(named: vm.color)
+        dateCreated.text = vm.date
+        language.text = vm.language
+        reposDesc.text = vm.description
     }
     @IBAction func back(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func addFavorites(_ sender: UIButton) {
-        if vm?.check.value == true {
-            star.setImage(UIImage(systemName: "star"), for: .normal)
-            star.tintColor = .systemBlue
-            vm?.removeRepository()
-        }
-        else {
-            star.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            star.tintColor = .systemBlue
-            vm?.saveRepository()
-        }
+        vm.buttonClicked()
     }
     @IBAction func reposLink(_ sender: UIButton) {
-        vm?.linkPressed()
+        vm.linkPressed()
     }
-    
-
 
 }

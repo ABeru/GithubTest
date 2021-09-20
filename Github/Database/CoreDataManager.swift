@@ -13,15 +13,8 @@ final class CoreDataManager {
         let eDescription = NSEntityDescription.entity(forEntityName: "Repos", in: context)
         let repositoy = Repos(entity: eDescription!, insertInto: context)
         let eDescriptio = NSEntityDescription.entity(forEntityName: "ReposOwner", in: context)
-        let r = ReposOwner(entity: eDescriptio!, insertInto: context)
-        r.login = repos.owner?.login
-        r.avatar = repos.owner?.avatar_url
-        repositoy.owner = r
-        repositoy.dateCreated = repos.created_at
-        repositoy.language = repos.language
-        repositoy.name = repos.name
-        repositoy.reposDescription = repos.description
-        repositoy.url = repos.html_url
+        let user = ReposOwner(entity: eDescriptio!, insertInto: context)
+        EntityDesc().createEntity(repositoy, user, repos)
     
         do {
             try context.save()

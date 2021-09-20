@@ -15,20 +15,20 @@ class StarredController: UIViewController {
     var db = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-      assign()
-        vm.reload
-            .subscribe(onNext: { _ in
-                DispatchQueue.main.async { [weak self] in
-                          self?.RepList.reloadData()
-                }
-            }).disposed(by: db)
+      bindUi()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         vm.viewWillAppear()
         
     }
-    func assign() {
+    func bindUi() {
+        vm.reload
+            .subscribe(onNext: { _ in
+                DispatchQueue.main.async { [weak self] in
+                          self?.RepList.reloadData()
+                }
+            }).disposed(by: db)
         RepList.delegate = self
         datasource = ReposDataSource(vm)
         RepList.dataSource = datasource

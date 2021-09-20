@@ -17,15 +17,16 @@ class ViewController: BaseViewController {
     var datasource: ReposDataSource?
     override func viewDidLoad() {
         super.viewDidLoad()
-        Assign()
+        bindUi()
+ 
+    }
+    private func bindUi() {
         vm.reload
             .subscribe(onNext: { _ in
                 DispatchQueue.main.async { [weak self] in
                           self?.RepList.reloadData()
                       }
             }).disposed(by: db)
-    }
-    private func Assign() {
         Search.delegate = self
         RepList.delegate = self
         datasource = ReposDataSource(vm)
