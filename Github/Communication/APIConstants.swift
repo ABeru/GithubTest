@@ -10,5 +10,6 @@ enum API {
     enum Endpoints: String {
         case user       = "/users/"
         case repository = "/repos"
+        case page       = "?&page="
     }
 }

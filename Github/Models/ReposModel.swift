@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct ReposModel: Codable {
+struct ReposModel: Codable{
+    
     let name: String?
     let owner: Owner?
     let description: String?

@@ -44,6 +44,11 @@ extension ViewController: UITableViewDelegate{
         vm.modelAt(indexPath.row)
         performSegue(withIdentifier: "details", sender: nil)
     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == vm.repositories.value.count {
+            vm.page.accept(vm.page.value + 1)
+        }
+    }
 }
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
